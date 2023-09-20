@@ -1,0 +1,59 @@
+<% include ./particles/header.ejs %>
+   <div id="main">
+    <div id="left">
+
+    </div>
+    <div id="center">
+       <% allpost.reverse().forEach((all)=>{ %>
+         <div class="cnt">
+            <div class="card">
+                <h3 class="card__title"><%=all.user.username%>
+                </h3>
+                <p class="card__content"><%= all.post %> </p>
+                <div class="card__date">
+                    <%= all.time %>
+                </div>
+                <div class="card__arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
+                        <path fill="#fff" d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3232 10.7626L14.5303 4.96967C14.2374 4.67678 13.7626 4.67678 13.4697 4.96967C13.1768 5.26256 13.1768 5.73744 13.4697 6.03033L18.6893 11.25H4C3.58579 11.25 3.25 11.5858 3.25 12C3.25 12.4142 3.58579 12.75 4 12.75H18.6893L13.4697 17.9697Z"></path>
+                    </svg>
+                </div>
+            </div>
+            <button class="Btn">
+                <span class="leftContainer">
+                    <a href="/likes/<%= all._id %>" style="text-decoration: none;">
+                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="#fff"><path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z"></path></svg>
+                     <span class="like">Like</span>
+                    </a>
+                    </span>
+                <span class="likeCount">
+                  <%= all.likes.length %>
+                </span>
+              </button>
+        </div>
+      <% }) %>
+    </div>
+    <div id="right">
+        <div class="tnk">
+            
+            
+                <div class="dp">
+                    <img src="../images/uploads/<%=user.img %>" alt="">
+                
+            </div>
+           <a href="/profile" style="text-decoration: none;"><h3><%= user.username %></h3></a>
+        </div>
+    </div>
+   </div>
+   <script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>
+
+    <% include ./particles/footer.ejs %>
